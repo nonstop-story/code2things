@@ -1,8 +1,19 @@
-# hello-world
+# nonstop-story
 
-Hello, world.
+这是 nonstop-story 的**从代码到实物**课程仓库。
 
-## 个人简介
+![alt](logo/aqua.jpg)
+
+[![GitHub top language](https://img.shields.io/github/languages/top/nonstop-story/code2things.svg)](https://github.com/nonstop-story/code2things)
+[![license](https://img.shields.io/github/license/nonstop-story/code2things.svg?colorB=000000)](https://github.com/nonstop-story/code2things)
+
+## 团队介绍
+
+这是一个肝肝肝的团队
+
+拥有大佬，我们并不迷茫（迷之自信）
+
+## 成员介绍
 
 刘俊汐，一个不会编程的无助设计生
 
@@ -11,9 +22,3 @@ Hello, world.
 毕凯斌，理科生被分到文科专业向转走......
 
 杨靖华，技能树全部点歪的江湖气人
-
-## 团队介绍
-
-这是一个肝肝肝的团队
-
-拥有大佬，我们并不迷茫（迷之自信）
