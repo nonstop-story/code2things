@@ -2,7 +2,7 @@
 
 这是 nonstop-story 的**从代码到实物**课程仓库。
 
-![alt](logo/aqua.jpg)
+![alt](logo/logo.jpg)
 
 [![GitHub top language](https://img.shields.io/github/languages/top/nonstop-story/code2things.svg)](https://github.com/nonstop-story/code2things)
 [![license](https://img.shields.io/github/license/nonstop-story/code2things.svg?colorB=000000)](https://github.com/nonstop-story/code2things)
