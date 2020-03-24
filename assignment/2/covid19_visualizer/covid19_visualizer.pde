@@ -4,14 +4,13 @@ import java.util.*;
 
 private static final boolean DEBUG = true;
 
-private PImage worldMap;
 private VirusService service;
-
 private Timer timer;
 private List<Country> allCountries;
 private List<Area> areas;
 
 private boolean loadSuccessful = false;
+private boolean firstDraw = true;
 
 List<Country> initializeCountries() {
   try {
@@ -30,12 +29,11 @@ List<Area> initializeAreas(List<Country> countries) {
   return list;
 }
 
-PImage initializeWorldMap() {
+void initializeWorldMap() {
   PImage img = loadImage("res/map.png");
   translate(width * 0.5, height * 0.5);
   imageMode(CENTER);
   image(img, 0, 0);
-  return img;
 }
 
 Timer initializeTimer(int tickCount) {
@@ -47,7 +45,15 @@ void setup() {
   textSize(28);
   
   service = VirusServices.create();
-  worldMap = initializeWorldMap();
+  initializeWorldMap();
+}
+
+/**
+ * Put time-consuming operations out of the setup() method.
+ * Let the user see the world map during the network request,
+ * instead of just showing a gray background with nothing meaningful.
+ */
+void lazySetup() {
   allCountries = initializeCountries();
   areas = initializeAreas(allCountries);
   timer = initializeTimer(allCountries.size());
@@ -56,19 +62,24 @@ void setup() {
 }
 
 void draw() {
+  if (firstDraw) {
+    debug("Lazy setup");
+    lazySetup();
+    firstDraw = false;
+  }
+  
   if (!loadSuccessful) {
     debug("Load data failed, skip drawing");
     return;
   }
   
-  for (Area a : areas) {
-    a.update();
-    a.show();
-  }
-  
   if (timer.isUpdated()) {
     int tick = timer.getCurrentTick();
     debug("tick: %d, country: %s", tick, allCountries.get(tick));
+    for (Area a : areas) {
+      a.update();
+      a.show();
+    }
   }
   
   timer.tick();
