@@ -14,11 +14,16 @@ void setup() {
 void draw() {
   try {
     Day day = service.today().execute().body();
+    fill(0);
     text("Date: " + day.getDate(), 10, 30);
-    text("Confirmed: " + day.getConfirmed(), 10, 30 + LINE_HEIGHT);
-    text("Deaths:    " + day.getDeaths(), 10, 30 + LINE_HEIGHT * 2);
-    text("Recovered: " + day.getRecovered(), 10, 30 + LINE_HEIGHT * 3);
-  } catch (IOException e) {
+    fill(#FF0000);
+    text("Confirmed: " + day.getConfirmed(), 10, 30 + LINE_HEIGHT * 2);
+    fill(0);
+    text("Deaths:    " + day.getDeaths(), 10, 30 + LINE_HEIGHT * 3);
+    fill(#0099FF);
+    text("Recovered: " + day.getRecovered(), 10, 30 + LINE_HEIGHT * 4);
+  } 
+  catch (IOException e) {
     text(e.getMessage(), 10, 30);
   }
 }
