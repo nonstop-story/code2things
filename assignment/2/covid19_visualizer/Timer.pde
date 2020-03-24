@@ -22,7 +22,6 @@ class Timer {
   }
 
   public Timer(float duration, int ticks) {
-    intervalDuration = 0;
     currentTick = 0;
     cycleDuration = 0;
     cycleDurationMS = 0;
