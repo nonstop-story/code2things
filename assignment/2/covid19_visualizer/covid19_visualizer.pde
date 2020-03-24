@@ -8,7 +8,7 @@ VirusService service;
 void setup() {
   size(680, 400);
   textSize(TEXT_SIZE);
-  service = VirusServiceFactory.create();
+  service = VirusServices.create();
 }
 
 void draw() {
