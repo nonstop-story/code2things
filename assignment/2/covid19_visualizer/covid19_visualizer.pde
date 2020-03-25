@@ -55,7 +55,6 @@ List<Area> initializeAreas(List<Country> countries) {
  */
 void initializeWorldMap() {
   PImage img = loadImage("res/map.png");
-  translate(width * 0.5, height * 0.5);
   imageMode(CENTER);
   image(img, 0, 0);
 }
@@ -67,6 +66,9 @@ Timer initializeTimer(int tickCount) {
 void setup() {
   size(1024, 512);
   textSize(28);
+  
+  // move cursor to the center of the screen
+  translate(width * 0.5, height * 0.5);
   
   service = VirusServices.create();
   initializeWorldMap();
@@ -103,14 +105,11 @@ void draw() {
     return;
   }
   
+  // move cursor to the center of the screen
+  translate(width * 0.5, height * 0.5);
+  
   // refresh every timer update
   if (timer.isUpdated()) {
-    int tick = timer.getCurrentTick();
-    debug("tick: %d, country: %s", tick, allCountries.get(tick));
-    
-    // move cursor to the center of the screen
-    translate(width * 0.5, height * 0.5);
-    
     // draw areas
     for (Area a : areas) {
       a.update();
