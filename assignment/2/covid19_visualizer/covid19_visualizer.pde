@@ -2,16 +2,33 @@ import com.nonstop.covid19.api.*;
 import com.nonstop.covid19.geometry.*;
 import java.util.*;
 
+/**
+ * The debug flag, set to true to print debug log
+ */
 private static final boolean DEBUG = true;
 
+/**
+ * VirusService performs http requst to the API.
+ */
 private VirusService service;
+
+/**
+ * Because the draw() method get called looply,
+ * whose interval is uncertain and usually to short.
+ * We need the Timer to count real-world time
+ * and notify us when a certain time interval arrives.
+ */
 private Timer timer;
+
 private List<Country> allCountries;
 private List<Area> areas;
 
 private boolean loadSuccessful = false;
 private boolean firstDraw = true;
 
+/**
+ * Request api to get country data
+ */
 List<Country> initializeCountries() {
   try {
     return Countries.from(service.allCountries().execute().body());
@@ -21,6 +38,10 @@ List<Country> initializeCountries() {
   }
 }
 
+/**
+ * Construct Area from Country.
+ * Area is responsible to draw data in a Country.
+ */
 List<Area> initializeAreas(List<Country> countries) {
   ArrayList<Area> list = new ArrayList<Area>();
   for (Country c : countries) {
@@ -29,6 +50,9 @@ List<Area> initializeAreas(List<Country> countries) {
   return list;
 }
 
+/**
+ * Load and display the world map
+ */
 void initializeWorldMap() {
   PImage img = loadImage("res/map.png");
   translate(width * 0.5, height * 0.5);
@@ -56,12 +80,18 @@ void setup() {
 void lazySetup() {
   allCountries = initializeCountries();
   areas = initializeAreas(allCountries);
+  
+  // timer manages a counter from 0 to allCountries.size(),
+  // and gets updated(counter increases) every 8 seconds.
   timer = initializeTimer(allCountries.size());
   
+  // allCountries should not be empty,
+  // otherwise, the http request failed.
   loadSuccessful = allCountries.size() > 0;
 }
 
 void draw() {
+  // only do lazy setup at first time
   if (firstDraw) {
     debug("Lazy setup");
     lazySetup();
@@ -73,15 +103,19 @@ void draw() {
     return;
   }
   
+  // refresh every timer update
   if (timer.isUpdated()) {
     int tick = timer.getCurrentTick();
     debug("tick: %d, country: %s", tick, allCountries.get(tick));
+    
+    // draw areas
     for (Area a : areas) {
       a.update();
       a.show();
     }
   }
   
+  // let the timer tick
   timer.tick();
 }
 
