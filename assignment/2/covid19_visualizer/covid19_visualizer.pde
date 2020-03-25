@@ -14,7 +14,7 @@ private VirusService service;
 
 /**
  * Because the draw() method get called looply,
- * whose interval is uncertain and usually to short.
+ * whose interval is uncertain and usually too short.
  * We need the Timer to count real-world time
  * and notify us when a certain time interval arrives.
  */
