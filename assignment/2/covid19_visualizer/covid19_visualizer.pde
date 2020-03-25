@@ -108,6 +108,9 @@ void draw() {
     int tick = timer.getCurrentTick();
     debug("tick: %d, country: %s", tick, allCountries.get(tick));
     
+    // move cursor to the center of the screen
+    translate(width * 0.5, height * 0.5);
+    
     // draw areas
     for (Area a : areas) {
       a.update();

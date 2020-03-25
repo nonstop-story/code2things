@@ -15,6 +15,9 @@ class Area {
     this.country = country;
     x = Map.toX(longitude);
     y = Map.toY(latitude);
+    
+    debug("Area: %s, longitude: %f, latitude: %f, x: %f, y: %f",
+      country.getCountryName(), longitude, latitude, x, y);
     reset();
   }
 
