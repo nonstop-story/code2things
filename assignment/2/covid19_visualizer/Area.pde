@@ -36,8 +36,8 @@ class Area {
     List<Day> days = country.getDays();
     if (days.size() > 0) {
       int confirmed = days.get(days.size() - 1).getConfirmed();
-      r = sqrt(confirmed);
-      colorMix = map(confirmed, 0, 500000, 0, 255);
+      r = map(log(confirmed), 0, 5, 0, 40);
+      colorMix = map(confirmed, 0, 100000, 0, 255);
     }
   }
   
