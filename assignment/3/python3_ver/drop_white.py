@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*
 import pymongo
 
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+client = pymongo.MongoClient("mongodb://localhost:27000/")
 data_base = client['test']
 uid_col = data_base['uid']
 

@@ -1,7 +1,7 @@
 # 将现成的黑名单喂进数据库
 require 'mongo'
 
-client = Mongo::Client.new('mongodb://127.0.0.1:27017/test')
+client = Mongo::Client.new('mongodb://127.0.0.1:27000/test')
 table = client[:uid]
 
 black_file = File.open("database/black.txt", "rb")

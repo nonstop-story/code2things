@@ -3,7 +3,7 @@
 
 require 'mongo'
 
-client = Mongo::Client.new('mongodb://127.0.0.1:27017/test')
+client = Mongo::Client.new('mongodb://127.0.0.1:27000/test')
 table = client[:question]
 
 question_file = File.open("database/file2.txt", "rb")

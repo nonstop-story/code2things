@@ -5,7 +5,7 @@
 
 require 'mongo'
 
-client = Mongo::Client.new('mongodb://127.0.0.1:27017/test')
+client = Mongo::Client.new('mongodb://127.0.0.1:27000/test')
 table = client[:uid]
 
 miss_black_file = File.open("database/drop_list.txt", "rb")
