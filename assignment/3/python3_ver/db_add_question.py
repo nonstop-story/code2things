@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*
 import pymongo
+import exam_fun
+import asyncio
 
 client = pymongo.MongoClient("mongodb://localhost:27000/")
+# 链接数据库主机
 data_base = client['test']
 question = data_base['question']
 
@@ -11,17 +14,11 @@ for line in question_file:
         continue
     array = line.split(':', 2)
 
-    insert = True
     doc = {
         "uid": array[1],
         "danmaku": array[2].split('\n')[0],
-        "finish": "no"
     }
 
-    for result in question.find({"danmaku": array[2]}):
-        insert = False
+    exam_fun.insert_doc(doc, question)
 
-    if insert:
-        question.insert_one(doc)
-        print("insert: " + str(doc))
 question_file.close()
