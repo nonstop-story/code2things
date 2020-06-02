@@ -3,7 +3,7 @@ import pymongo
 
 client = pymongo.MongoClient("mongodb://localhost:27000/")
 data_base = client['test']
-question = data_base['question']
+question = data_base['finished_question']
 uid_col = data_base['uid']
 
 uid_list = uid_col.find({'type': "black"})

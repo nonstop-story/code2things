@@ -22,8 +22,10 @@ try:
         for result in uid_col.find({"uid": single['uid']}):
             insert = False
             continue
-        # 趁另一个用户不注意提前插入文本
-        # 防止两个用户同时改到一道题
+        """
+        趁另一个用户不注意提前插入文本
+        防止两个用户同时改到一道题
+        """
         uid_col.insert_one({"uid": single['uid'], "type": "white"})
         regret_uid = single['uid']
         print(regret_uid)

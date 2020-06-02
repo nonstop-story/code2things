@@ -12,6 +12,7 @@ question_file = open("file2.txt", "r")
 for line in question_file:
     if line[0] != '1':
         continue
+        # 弹幕成分判定
     array = line.split(':', 2)
 
     doc = {
