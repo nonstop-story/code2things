@@ -6,7 +6,7 @@ use std::sync::mpsc;
 use std::thread;
 use tui::backend::CrosstermBackend;
 use tui::layout::{Constraint, Direction, Layout};
-use tui::widgets::{Block, Borders, List, Text, Widget};
+use tui::widgets::{Block, Borders, List, Text};
 use tui::Terminal;
 
 #[derive(Default)]
@@ -46,7 +46,7 @@ fn main() -> std::io::Result<()> {
             _ => (),
         };
 
-        terminal.draw(|mut f| {
+        let _ = terminal.draw(|mut f| {
             let chunks = Layout::default()
                 .direction(Direction::Vertical)
                 .margin(1)
@@ -64,6 +64,4 @@ fn main() -> std::io::Result<()> {
             f.render_widget(list, chunks[0]);
         });
     }
-
-    Ok(())
 }
