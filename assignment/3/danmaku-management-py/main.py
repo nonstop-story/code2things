@@ -1,11 +1,12 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 import asyncio
 import json
 import requests
-from .ki_logger import Logger
+from ki_logger import Logger
 import blivedm
-import me
-
+import cookies as cookies_getter
 
 async def set_block_user(room_id, csrf, user_uid):
     block_url = "https://api.live.bilibili.com/banned_service/v2/Silent/add_block_user"
@@ -44,8 +45,9 @@ async def main():
 
 if __name__ == '__main__':
     room = 763869
-    cookies = me.cookies
+    cookies = cookies_getter.get_bilibili_cookies()
     my_csrf = cookies['bili_jct']
     black = {}
     Logger.init(9999)
     asyncio.get_event_loop().run_until_complete(main())
+

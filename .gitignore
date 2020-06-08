@@ -32,4 +32,5 @@ target/
 
 *.app
 *.dmg
+__pycache__/
 
