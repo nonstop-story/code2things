@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*
 import pymongo
+import exam_fun
+import asyncio
 
 client = pymongo.MongoClient("mongodb://localhost:27000/")
+# 链接数据库主机
 data_base = client['test']
 question = data_base['question']
 
@@ -9,19 +12,14 @@ question_file = open("file2.txt", "r")
 for line in question_file:
     if line[0] != '1':
         continue
+        # 弹幕成分判定
     array = line.split(':', 2)
 
-    insert = True
     doc = {
         "uid": array[1],
         "danmaku": array[2].split('\n')[0],
-        "finish": "no"
     }
 
-    for result in question.find({"danmaku": array[2]}):
-        insert = False
+    exam_fun.insert_doc(doc, question)
 
-    if insert:
-        question.insert_one(doc)
-        print("insert: " + str(doc))
 question_file.close()
