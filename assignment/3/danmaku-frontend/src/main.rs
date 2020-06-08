@@ -1,13 +1,16 @@
-use std::io;
-use std::io::prelude::*;
-use std::io::BufReader;
-use std::net::TcpStream;
-use std::sync::mpsc;
-use std::thread;
-use tui::backend::CrosstermBackend;
-use tui::layout::{Constraint, Direction, Layout};
-use tui::widgets::{Block, Borders, List, Text};
-use tui::Terminal;
+use std::{
+    io,
+    io::{prelude::*, BufReader},
+    net::TcpStream,
+    sync::mpsc,
+    thread,
+};
+use tui::{
+    backend::CrosstermBackend,
+    layout::{Constraint, Direction, Layout},
+    widgets::{Block, Borders, List, Text},
+    Terminal,
+};
 
 #[derive(Default)]
 struct App {
