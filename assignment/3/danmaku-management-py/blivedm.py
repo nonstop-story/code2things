@@ -320,25 +320,25 @@ class BLiveClient:
         )
     }
     for cmd in (  # 其他已知命令
-        '', 'ACTIVITY_BANNER_RED_NOTICE_CLOSE', 'ACTIVITY_BANNER_UPDATE_V2', 'ACTIVITY_MATCH_GIFT',
-        'ACTIVITY_RED_PACKET', 'BLOCK', 'CHANGE_ROOM_INFO', 'CLOSE', 'COMBO_END', 'COMBO_SEND',
-        'CUT_OFF', 'DAILY_QUEST_NEWDAY', 'END', 'ENTRY_EFFECT', 'GUARD_LOTTERY_START',
-        'GUARD_MSG', 'GUIARD_MSG', 'HOUR_RANK_AWARDS', 'LIVE', 'LOL_ACTIVITY',
-        'LUCK_GIFT_AWARD_USER', 'MESSAGEBOX_USER_GAIN_MEDAL', 'new_anchor_reward', 'NOTICE_MSG',
-        'PK_AGAIN', 'PK_END', 'PK_MATCH', 'PK_MIC_END', 'PK_PRE', 'PK_PROCESS', 'PK_SETTLE',
-        'PK_START', 'PREPARING', 'RAFFLE_END', 'RAFFLE_START', 'REFRESH', 'ROOM_ADMINS',
-        'room_admin_entrance', 'ROOM_BLOCK_INTO', 'ROOM_BLOCK_MSG', 'ROOM_BOX_MASTER',
-        'ROOM_CHANGE', 'ROOM_KICKOUT', 'ROOM_LIMIT', 'ROOM_LOCK', 'ROOM_RANK',
-        'ROOM_REAL_TIME_MESSAGE_UPDATE', 'ROOM_REAL_TIME_MESSAGE_UPDATE', 'ROOM_REFRESH',
-        'ROOM_SHIELD', 'ROOM_SILENT_OFF', 'ROOM_SILENT_ON', 'ROOM_SKIN_MSG', 'ROUND',
-        'SCORE_CARD', 'SEND_TOP', 'SPECIAL_GIFT', 'SUPER_CHAT_ENTRANCE',
-        'SUPER_CHAT_MESSAGE_JPN', 'SYS_GIFT', 'SYS_MSG', 'TV_END', 'TV_START', 'USER_TOAST_MSG',
-        'WARNING', 'WEEK_STAR_CLOCK', 'WELCOME', 'WELCOME_GUARD', 'WIN_ACTIVITY', 'WISH_BOTTLE'
+            '', 'ACTIVITY_BANNER_RED_NOTICE_CLOSE', 'ACTIVITY_BANNER_UPDATE_V2', 'ACTIVITY_MATCH_GIFT',
+            'ACTIVITY_RED_PACKET', 'BLOCK', 'CHANGE_ROOM_INFO', 'CLOSE', 'COMBO_END', 'COMBO_SEND',
+            'CUT_OFF', 'DAILY_QUEST_NEWDAY', 'END', 'ENTRY_EFFECT', 'GUARD_LOTTERY_START',
+            'GUARD_MSG', 'GUIARD_MSG', 'HOUR_RANK_AWARDS', 'LIVE', 'LOL_ACTIVITY',
+            'LUCK_GIFT_AWARD_USER', 'MESSAGEBOX_USER_GAIN_MEDAL', 'new_anchor_reward', 'NOTICE_MSG',
+            'PK_AGAIN', 'PK_END', 'PK_MATCH', 'PK_MIC_END', 'PK_PRE', 'PK_PROCESS', 'PK_SETTLE',
+            'PK_START', 'PREPARING', 'RAFFLE_END', 'RAFFLE_START', 'REFRESH', 'ROOM_ADMINS',
+            'room_admin_entrance', 'ROOM_BLOCK_INTO', 'ROOM_BLOCK_MSG', 'ROOM_BOX_MASTER',
+            'ROOM_CHANGE', 'ROOM_KICKOUT', 'ROOM_LIMIT', 'ROOM_LOCK', 'ROOM_RANK',
+            'ROOM_REAL_TIME_MESSAGE_UPDATE', 'ROOM_REAL_TIME_MESSAGE_UPDATE', 'ROOM_REFRESH',
+            'ROOM_SHIELD', 'ROOM_SILENT_OFF', 'ROOM_SILENT_ON', 'ROOM_SKIN_MSG', 'ROUND',
+            'SCORE_CARD', 'SEND_TOP', 'SPECIAL_GIFT', 'SUPER_CHAT_ENTRANCE',
+            'SUPER_CHAT_MESSAGE_JPN', 'SYS_GIFT', 'SYS_MSG', 'TV_END', 'TV_START', 'USER_TOAST_MSG',
+            'WARNING', 'WEEK_STAR_CLOCK', 'WELCOME', 'WELCOME_GUARD', 'WIN_ACTIVITY', 'WISH_BOTTLE'
     ):
         _COMMAND_HANDLERS[cmd] = None
     del cmd
 
-    def __init__(self, room_id, uid=0, session: aiohttp.ClientSession=None,
+    def __init__(self, room_id, uid=0, session: aiohttp.ClientSession = None,
                  heartbeat_interval=30, ssl=True, loop=None):
         """
         :param room_id: URL中的房间ID，可以为短ID
@@ -500,13 +500,13 @@ class BLiveClient:
 
     async def _send_auth(self):
         auth_params = {
-            'uid':       self._uid,
-            'roomid':    self._room_id,
-            'protover':  2,
-            'platform':  'web',
+            'uid': self._uid,
+            'roomid': self._room_id,
+            'protover': 2,
+            'platform': 'web',
             'clientver': '1.8.2',
-            'type':      2,
-            'key':       self._host_server_token
+            'type': 2,
+            'key': self._host_server_token
         }
         await self._websocket.send_bytes(self._make_packet(auth_params, Operation.AUTH))
 
@@ -523,8 +523,8 @@ class BLiveClient:
                 # 连接
                 host_server = self._host_server_list[retry_count % len(self._host_server_list)]
                 async with self._session.ws_connect(
-                    f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub',
-                    ssl=self._ssl
+                        f'wss://{host_server["host"]}:{host_server["wss_port"]}/sub',
+                        ssl=self._ssl
                 ) as websocket:
                     self._websocket = websocket
                     await self._send_auth()
@@ -541,8 +541,8 @@ class BLiveClient:
                                 await self._handle_message(message.data)
                             except BaseException as e:
                                 if type(e) in (
-                                    asyncio.CancelledError, aiohttp.ClientConnectionError,
-                                    asyncio.TimeoutError, ssl_.SSLError
+                                        asyncio.CancelledError, aiohttp.ClientConnectionError,
+                                        asyncio.TimeoutError, ssl_.SSLError
                                 ):
                                     raise
                                 logger.exception('room %d 处理消息时发生错误：', self.room_id)
