@@ -21,9 +21,11 @@ class Logger:
 
     @staticmethod
     def log(msg):
+        failed = []
         for client in clients:
             try:
                 client.sendall((msg + "\n").encode())
-            except Exception as e:
-                print(e)
-                pass
+            except Exception:
+                failed.append(client)
+        for one in failed:
+            clients.remove(one)
