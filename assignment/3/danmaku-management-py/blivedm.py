@@ -627,7 +627,7 @@ class BLiveClient:
                 await self._handle_command(one_command)
             return
 
-        cmd = command['cmd']
+        cmd = command.get('cmd', '')
         pos = cmd.find(':')  # 2019-5-29 B站弹幕升级新增了参数
         if pos != -1:
             cmd = cmd[:pos]
