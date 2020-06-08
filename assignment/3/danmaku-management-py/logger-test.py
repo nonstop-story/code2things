@@ -1,4 +1,4 @@
-from logger import Logger
+from ki_logger import Logger
 import time
 
 Logger.init(9999)

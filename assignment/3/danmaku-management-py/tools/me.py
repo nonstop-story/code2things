@@ -1,0 +1,11 @@
+cookies = {'_uuid': 'AA14C3B3-19AD-1818-25B4-394BF4D4C27910025infoc',
+           'buvid3': '49424F98-F345-4E3E-9DD0-3732737744B5155821infoc', 'LIVE_BUVID': 'AUTO2715672545154904',
+           'stardustvideo': '1', 'laboratory': '1-1', 'rpdid': "|(RYuuk|)|Y0J'ulY~kYku)~",
+           'im_notify_type_6903512': '0', 'sid': 'isoo3yg2', 'dy_spec_agreed': '1', 'LIVE_PLAYER_TYPE': '1',
+           '_ga': 'GA1.2.123138215.1587183874', 'CURRENT_QUALITY': '116', 'bp_t_offset_6903512': '395115988845376715',
+           'bp_video_offset_487763794': '395559543003550462', 'DedeUserID': '6903512',
+           'DedeUserID__ckMd5': '6febfdf99e4ce54f', 'SESSDATA': 'c0129ccf%2C1606533018%2Cc9388*61',
+           'bili_jct': '3dc2f90800c716e9f36f751fab80f0b1',
+           'Hm_lvt_8a6e55dbd2870f0f5bc9194cddf32a02': '1590582226,1590833962,1590939493,1591021872',
+           'GIFT_BLOCK_COOKIE': 'GIFT_BLOCK_COOKIE', 'bp_video_offset_6903512': '396167057534224804',
+           '_dfcaptcha': 'd1b72557b372a596acbd41115fb5bf2e', 'LIVE_ROOM_ADMIN_UP_TIP': '1', 'PVID': '3'}
