@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
 import asyncio
 import json
 import requests
+from .ki_logger import Logger
 import blivedm
 import me
 
@@ -27,10 +27,7 @@ class MyBLiveClient(blivedm.BLiveClient):
 
     async def _on_receive_danmaku(self, danmaku: blivedm.DanmakuMessage):
         if danmaku.msg_type == 0:
-            if await judge(danmaku.msg):
-                mes = await set_block_user(room, my_csrf, danmaku.uid)
-                if mes['code'] == 0:
-                    print(f"||已禁言: {mes['data']['uname']} |||他发的弹幕是: {danmaku.msg}|||他的uid是: {danmaku.uid}||")
+            Logger.log(f"{danmaku.timestamp}:{danmaku.uid}:{danmaku.msg}")
 
 
 async def main():
@@ -38,6 +35,7 @@ async def main():
     # 如果SSL验证失败就把ssl设为False
     client = MyBLiveClient(room, ssl=True)
     future = client.start()
+
     try:
         await future
     finally:
@@ -49,4 +47,5 @@ if __name__ == '__main__':
     cookies = me.cookies
     my_csrf = cookies['bili_jct']
     black = {}
+    Logger.init(9999)
     asyncio.get_event_loop().run_until_complete(main())
