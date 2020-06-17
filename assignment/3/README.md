@@ -30,17 +30,25 @@
 
 通过这次作业，小组成员充分提高了自我学习能力，体会了在新程序开发中所经历的困难和艰辛，同时提高了团队合作能力。
 
-图纸: 
+图纸1（NLP版本）: 
 
+```mermaid
 graph LR
-
 	server["bilibiliServer"] ==danmakuStream==> client["personalServer(NLP)"]
-
-	client ==> blackAPI(("blockTool"))
-	
+	blackAPI ==danmakuMessage==> user[userComputer]
+	blackAPI ==blockMessage==> user[userComputer]
+	client ==defensiveDanmaku==> blackAPI(("blockTool"))
 	blackAPI ==blockRequest==> server
+```
+图纸2（数据库版本）: 
 
-
+```mermaid
+graph LR
+	uid[uidDatabase] --returnExist--> user[humanOperate]
+	question[danmakuDatabase] --popQuestion--> user
+	user --addUid--> uid
+	user --deleteQuestion--> question
+```
 
 制作过程记录: 
 
