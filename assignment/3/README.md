@@ -33,8 +33,11 @@
 图纸: 
 
 graph LR
+
 	server["bilibiliServer"] ==danmakuStream==> client["personalServer(NLP)"]
+
 	client ==> blackAPI(("blockTool"))
+	
 	blackAPI ==blockRequest==> server
 
 
